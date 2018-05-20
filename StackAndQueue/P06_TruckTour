@@ -1,0 +1,49 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Numerics;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace P06_TruckTour
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int N = int.Parse(Console.ReadLine());
+            Queue<string> que = new Queue<string>();
+
+            for (int i = 0; i < N; i++)
+            {
+                que.Enqueue(Console.ReadLine());
+            }
+            
+            for (int i = 0; i < N; i++)
+            {
+                BigInteger fuel = 0;
+
+                for (int j = 0; j < N; j++)
+                {
+                    string pump = que.Dequeue();
+                    BigInteger[] oilDistance = pump.Split().Select(BigInteger.Parse).ToArray();
+                    fuel = oilDistance[0] + fuel - oilDistance[1];
+                    if (fuel < 0)
+                    {
+                        fuel = fuel + oilDistance[0] - oilDistance[1];
+                        i = i + j;
+                        que.Enqueue(pump);
+                        break;
+                    }
+                    que.Enqueue(pump);
+                }
+                if (fuel >= 0)
+                {
+                    Console.WriteLine(i);
+                    break;
+                }
+            }
+
+        }
+    }
+}
