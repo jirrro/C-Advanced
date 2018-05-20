@@ -1,0 +1,39 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace P03_MaxElement
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int query = int.Parse(Console.ReadLine());
+            Stack<int> collectionMax = new Stack<int>();
+            Stack<int> collectionAll = new Stack<int>();
+            collectionMax.Push(int.MinValue);
+            for (int i = 0; i < query; i++)
+            {
+                string command = Console.ReadLine();
+                switch (command[0])
+                {
+                    case '1':
+                        int number = int.Parse(command.Substring(2));
+                        collectionAll.Push(number);
+                        if (number>= collectionMax.Peek())
+                        {
+                            collectionMax.Push(number);
+                        };break;
+                    case '2':
+                        if (collectionMax.Peek()== collectionAll.Pop())
+                        {
+                            collectionMax.Pop();
+                        }
+                        ;break;
+                    case '3':
+                        Console.WriteLine(collectionMax.Peek());break;
+                }
+            }
+        }
+    }
+}
