@@ -1,0 +1,47 @@
+using System;
+using System.Collections.Generic;
+
+namespace P07_Parentheses
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string text = Console.ReadLine();
+            Stack<char> parentheses = new Stack<char>();
+
+            foreach (var item in text)
+            {
+                if (item == '{' || item == '(' || item == '[')
+                {
+                    parentheses.Push(item);
+                }
+                else
+                {
+                    if (parentheses.Count==0)
+                    {
+                        Console.WriteLine("NO");
+                        return;
+                    }
+                    if (parentheses.Peek() == '{' && item != '}')
+                    {
+                        Console.WriteLine("NO");
+                        return;
+                    }
+                    else if (parentheses.Peek() == '[' && item != ']')
+                    {
+                        Console.WriteLine("NO");
+                        return;
+                    }
+                    else if (parentheses.Peek() == '(' && item != ')')
+                    {
+                        Console.WriteLine("NO");
+                        return;
+                    }
+                    parentheses.Pop();
+                }
+            }
+            Console.WriteLine("YES");
+        }
+    }
+}
