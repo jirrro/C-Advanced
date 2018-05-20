@@ -1,0 +1,28 @@
+using System;
+using System.Collections.Generic;
+using System.Numerics;
+
+
+namespace P09_FibonacciStack
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Stack<BigInteger> fib = new Stack<BigInteger>();
+            fib.Push(0);
+            fib.Push(1);
+            int n = int.Parse(Console.ReadLine());
+
+            for (int i = 0; i < n-1; i++)
+            {
+                BigInteger first = fib.Pop();
+                BigInteger second = fib.Peek();
+                BigInteger third = first + second;
+                fib.Push(first);
+                fib.Push(third);
+            }
+            Console.WriteLine(fib.Peek());
+        }
+    }
+}
