@@ -1,0 +1,37 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Numerics;
+
+
+
+namespace P05_SequenceQueue
+{
+    class Program
+    {
+        static void Main()
+        {
+            BigInteger N = BigInteger.Parse(Console.ReadLine());
+            Queue<BigInteger> que = new Queue<BigInteger>();
+            que.Enqueue(N);
+            int i = 0;
+            while (que.Count<=50)
+            {
+                que.Enqueue(N + 1);
+               
+                que.Enqueue(2 * N + 1);
+               
+                que.Enqueue(N + 2);
+
+                i++;
+                N = que.ElementAt(i);
+            }
+
+            for (int j = 0; j < 50; j++)
+            {
+                Console.Write(que.Dequeue()+" ");
+            }
+            Console.WriteLine();
+        }
+    }
+}
