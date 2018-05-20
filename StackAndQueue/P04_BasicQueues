@@ -1,0 +1,41 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace P04_BasicQueues
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            int[] numbersCommand = Console.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
+            int[] nums=Console.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
+            Queue<int> que = new Queue<int>();
+            for (int i = 0; i < numbersCommand[0]; i++)
+            {
+                que.Enqueue(nums[i]);
+            }
+
+            for (int i = 0; i < numbersCommand[1]; i++)
+            {
+                que.Dequeue();
+            }
+
+            if (que.Count==0)
+            {
+                Console.WriteLine(0);
+            }
+            else if (que.Contains(numbersCommand[2]))
+            {
+                Console.WriteLine("true");
+            }
+            else
+            {
+                Console.WriteLine(que.Min());
+            }
+        }
+    }
+}
