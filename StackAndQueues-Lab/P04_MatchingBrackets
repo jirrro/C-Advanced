@@ -1,0 +1,29 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace P04_MatchingBrackets
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string equation = Console.ReadLine();
+            Stack<int> index = new Stack<int>();
+
+            for (int i = 0; i < equation.Length; i++)
+            {
+                if (equation[i]=='(')
+                {
+                    index.Push(i);
+                }
+                else if (equation[i]==')')
+                {
+                    Console.WriteLine(equation.Substring(index.Peek(),i-index.Pop()+1));
+                }
+            }
+        }
+    }
+}
