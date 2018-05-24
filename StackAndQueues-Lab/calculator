@@ -1,0 +1,30 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+
+namespace P02_Calculator
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string[] expression = Console.ReadLine().Split().ToArray();
+            Stack<string> values = new Stack<string>(expression);
+            int result = 0;
+            while (values.Count != 0)
+            {
+                int number = int.Parse(values.Pop());
+                if (values.Count != 0 && values.Pop() == "-")
+                {
+                    result = result - number;
+                }
+                else
+                {
+                    result += number;
+                }
+            }
+            Console.WriteLine(result);
+        }
+    }
+}
