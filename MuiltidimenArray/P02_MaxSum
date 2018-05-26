@@ -1,0 +1,58 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MaxSum
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int[] rowCol = Console.ReadLine().
+                 Split(new char[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse)
+                .ToArray();
+
+            int[,] matrix = new int[rowCol[0],rowCol[1]];
+
+            for (int i = 0; i < rowCol[0]; i++)
+            {
+                int[] row = Console.ReadLine().
+                 Split(new char[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse)
+                .ToArray();
+                for (int j = 0; j < rowCol[1]; j++)
+                {
+                    matrix[i, j] = row[j];
+                }
+            }
+
+            int sum = 0;
+            int rowIndex = 0;
+            int colIndex = 0;
+
+            for (int i = 0; i < rowCol[0]-1; i++)
+            {
+                for (int j = 0; j < rowCol[1]-1; j++)
+                {
+                    int tempSum = matrix[i, j] + matrix[i, j + 1] + matrix[i + 1, j] + matrix[i + 1, j + 1];
+                    if (tempSum>sum)
+                    {
+                        sum = tempSum;
+                        rowIndex = i;
+                        colIndex = j;
+                    }
+                }
+            }
+            for (int i = rowIndex; i <= rowIndex+1; i++)
+            {
+                for (int j = colIndex; j <= colIndex+1; j++)
+                {
+                    Console.Write(matrix[i,j]+" ");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine(sum);
+        }
+    }
+}
