@@ -1,0 +1,43 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace GroupNums
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var nums = Console.ReadLine().Split(new char[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries)
+                .Select(int.Parse).ToArray().GroupBy(x=>Math.Abs(x)%3);
+            int[][] matrix = new int[3][];
+            
+            foreach (var item in nums)
+            {
+                int numCout = item.Count();
+                if (item.Key==0)
+                {
+                    matrix[0] = item.ToArray();
+                }
+                else if (item.Key==1)
+                {
+                    matrix[1] = item.ToArray();
+                }
+                else
+                {
+                    matrix[2] = item.ToArray();
+                }
+            }
+            foreach (var item in matrix)
+            {
+                if (item==null)
+                {
+                    continue;
+                }
+                Console.WriteLine(string.Join(" ",item));
+            }
+        }
+    }
+}
